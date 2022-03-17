@@ -10,6 +10,8 @@ public class Database {
     private HashMap<String, String> data;
     private String name;
 
+    private String pipe;
+
     private Database(String name) {
         this.name = name;
         this.data = new HashMap<>();
@@ -61,6 +63,18 @@ public class Database {
             return database;
         }
         return new Database(databaseName);
+    }
+
+    public void setPipe(String value) {
+        this.pipe = value;
+    }
+
+    public String getPipeKey() {
+        return this.pipe;
+    }
+
+    public String getPipeValue() {
+        return this.data.get(this.getPipeKey());
     }
 
 }

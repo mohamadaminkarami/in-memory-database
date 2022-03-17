@@ -24,7 +24,20 @@ public class DatabaseController {
 
     public String get(Matcher matcher) {
         String key = matcher.group("key");
-        return this.database.getData(key);
+        // String value = key.equals("$") ? this.database.getPipeValue() : this.database.getData(key);
+        // or
+        String value;
+        if (key.equals("$")) {
+            value = this.database.getPipeValue();
+        } else {
+            value = this.database.getData(key);
+        }
+        boolean hasPipeLine = matcher.group("pipe").trim().equals("|");
+
+        if (hasPipeLine) {
+            this.database.setPipe(value);
+        }
+        return value;
 
     }
 

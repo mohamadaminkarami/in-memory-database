@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public enum Commands {
     SET("^SET (?<key>\\S+) (?<value>\\S+)$"),
-    GET("^GET (?<key>\\S+)$"),
-    DELETE("DEL (?<key>\\S+)$"),
+    GET("^GET (?<key>\\S+)(?<pipe>( \\|)?)$"), // using pipeline
+    DELETE("^DEL (?<key>\\S+)$"),
     USE("^USE (?<databaseName>\\S+)$"),
     LIST("^LIST$"),
     KEYS("^KEYS (?<regex>\\S+)$");
@@ -18,7 +18,9 @@ public enum Commands {
     }
 
     public static Matcher getMatcher(String input, Commands command) {
-        Matcher matcher = Pattern.compile(command.regex).matcher(input);
+        Matcher matcher = Pattern.compile(command.regex, Pattern.CASE_INSENSITIVE).matcher(input);
+        // return matcher.matches() ? matcher : null;
+       
         if (matcher.matches()) {
             return matcher;
         }
