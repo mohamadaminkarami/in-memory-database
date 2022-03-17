@@ -33,7 +33,7 @@ public class CommandProcessor {
             } else if ((matcher = Commands.getMatcher(input, Commands.USE)) != null) {
                 this.databaseController.use(matcher);
             } else if ((matcher = Commands.getMatcher(input, Commands.LIST)) != null) {
-                System.out.println(this.databaseController.getDatabaseNames());
+                System.out.println(this.databaseController.list());
             } else {
                 System.out.println("INVALID COMMAND");
             }

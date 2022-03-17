@@ -9,6 +9,10 @@ public class DatabaseController {
     private Database database;
 
     public DatabaseController(Database database) {
+        this.setDatabase(database);
+    }
+
+    private void setDatabase(Database database) {
         this.database = database;
     }
 
@@ -34,14 +38,14 @@ public class DatabaseController {
         return this.database.getKeys(regex);
     }
 
-    public ArrayList<String> getDatabaseNames() {
+    public ArrayList<String> list() {
         return Database.getDatabaseNames();
     }
 
     public void use(Matcher matcher) {
         String databaseName = matcher.group("databaseName");
-        this.database = this.database.getDatabase(databaseName);
+        Database newDatabase = Database.getDatabase(databaseName);
+        this.setDatabase(newDatabase);
     }
-
 
 }

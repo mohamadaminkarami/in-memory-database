@@ -10,7 +10,7 @@ public class Database {
     private HashMap<String, String> data;
     private String name;
 
-    public Database(String name) {
+    private Database(String name) {
         this.name = name;
         this.data = new HashMap<>();
         Database.allDatabases.put(name, this);
@@ -29,16 +29,32 @@ public class Database {
     }
 
     public ArrayList<String> getKeys(String regex) {
-        return (ArrayList<String>) this.data.keySet().stream().filter(key -> key.matches(regex))
-                .collect(Collectors.toList());
+        // return (ArrayList<String>) this.data.keySet().stream().filter(key ->
+        // key.matches(regex))
+        // .collect(Collectors.toList());
+
+        ArrayList<String> keys = new ArrayList<>();
+        for (String key : this.data.keySet()) {
+            if (key.matches(regex)) {
+                keys.add(key);
+            }
+        }
+        return keys;
+
     }
 
     public static ArrayList<String> getDatabaseNames() {
-        return (ArrayList<String>) Database.allDatabases.keySet().stream()
-                .collect(Collectors.toList());
+        // return (ArrayList<String>) Database.allDatabases.keySet().stream()
+        // .collect(Collectors.toList());
+
+        ArrayList<String> databaseNames = new ArrayList<>();
+        for (String databaseName : Database.allDatabases.keySet()) {
+            databaseNames.add(databaseName);
+        }
+        return databaseNames;
     }
 
-    public Database getDatabase(String databaseName) {
+    public static Database getDatabase(String databaseName) {
         Database database = Database.allDatabases.get(databaseName);
 
         if (database != null) {
