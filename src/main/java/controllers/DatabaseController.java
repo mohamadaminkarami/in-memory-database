@@ -34,4 +34,14 @@ public class DatabaseController {
         return this.database.getKeys(regex);
     }
 
+    public ArrayList<String> getDatabaseNames() {
+        return Database.getDatabaseNames();
+    }
+
+    public void use(Matcher matcher) {
+        String databaseName = matcher.group("databaseName");
+        this.database = this.database.getDatabase(databaseName);
+    }
+
+
 }

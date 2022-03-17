@@ -30,6 +30,10 @@ public class CommandProcessor {
                 this.databaseController.delete(matcher);
             } else if ((matcher = Commands.getMatcher(input, Commands.KEYS)) != null) {
                 System.out.println(this.databaseController.keys(matcher));
+            } else if ((matcher = Commands.getMatcher(input, Commands.USE)) != null) {
+                this.databaseController.use(matcher);
+            } else if ((matcher = Commands.getMatcher(input, Commands.LIST)) != null) {
+                System.out.println(this.databaseController.getDatabaseNames());
             } else {
                 System.out.println("INVALID COMMAND");
             }

@@ -7,6 +7,8 @@ public enum Commands {
     SET("^SET (?<key>\\S+) (?<value>\\S+)$"),
     GET("^GET (?<key>\\S+)$"),
     DELETE("DEL (?<key>\\S+)$"),
+    USE("^USE (?<databaseName>\\S+)$"),
+    LIST("^LIST$"),
     KEYS("^KEYS (?<regex>\\S+)$");
 
     private String regex;
