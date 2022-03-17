@@ -6,9 +6,10 @@ import java.util.regex.Pattern;
 public enum Commands {
     SET("^SET (?<key>\\S+) (?<value>\\S+)$"),
     GET("^GET (?<key>\\S+)$"),
-    DELETE("DEL (?<key>\\S+)$");
+    DELETE("DEL (?<key>\\S+)$"),
+    KEYS("^KEYS (?<regex>\\S+)$");
 
-    public String regex;
+    private String regex;
 
     Commands(String regex) {
         this.regex = regex;

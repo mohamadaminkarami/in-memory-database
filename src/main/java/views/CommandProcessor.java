@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 
 public class CommandProcessor {
-    public DatabaseController databaseController;
+    private DatabaseController databaseController;
 
     public CommandProcessor(DatabaseController databaseController) {
         this.databaseController = databaseController;
@@ -26,9 +26,10 @@ public class CommandProcessor {
                 System.out.println(this.databaseController.get(matcher));
             } else if ((matcher = Commands.getMatcher(input, Commands.SET)) != null) {
                 this.databaseController.set(matcher);
-
             } else if ((matcher = Commands.getMatcher(input, Commands.DELETE)) != null) {
                 this.databaseController.delete(matcher);
+            } else if ((matcher = Commands.getMatcher(input, Commands.KEYS)) != null) {
+                System.out.println(this.databaseController.keys(matcher));
             } else {
                 System.out.println("INVALID COMMAND");
             }

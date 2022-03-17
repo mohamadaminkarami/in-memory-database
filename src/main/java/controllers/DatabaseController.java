@@ -1,10 +1,12 @@
 package main.java.controllers;
 
 import main.java.models.Database;
+
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 
 public class DatabaseController {
-    public Database database;
+    private Database database;
 
     public DatabaseController(Database database) {
         this.database = database;
@@ -13,19 +15,23 @@ public class DatabaseController {
     public void set(Matcher matcher) {
         String key = matcher.group("key");
         String value = matcher.group("value");
-        this.database.data.put(key, value);
-
+        this.database.setData(key, value);
     }
 
     public String get(Matcher matcher) {
         String key = matcher.group("key");
-        return this.database.data.get(key);
+        return this.database.getData(key);
 
     }
 
     public void delete(Matcher matcher) {
         String key = matcher.group("key");
-        this.database.data.remove(key);
+        this.database.deleteData(key);
+    }
+
+    public ArrayList<String> keys(Matcher matcher) {
+        String regex = matcher.group("regex");
+        return this.database.getKeys(regex);
     }
 
 }
